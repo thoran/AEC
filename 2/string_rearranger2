@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+# string_rearranger
+
+# 20260924
+# 0.1.0
+
+def input_string
+  ARGV[0]
+end
+
+def split_value
+  ARGV[1]
+end
+
+def slice_length
+  if split_value.to_i >= 0
+    split_value.to_i
+  else
+    input_string.size + split_value.to_i - 1
+  end
+end
+
+def sliced_off_bit
+  starting_point = split_value.to_i > 0 ? 0 : split_value.to_i
+  input_string.split('')[starting_point, slice_length].join
+  input_string[starting_point, slice_length]
+end
+
+def remainder_bit
+  remainder_start = split_value.to_i > 0 ? slice_length.to_i : 0
+  input_string[remainder_start, input_string.size - slice_length.to_i]
+end
+
+def rearrange_string
+  if split_value.to_i > 0
+    remainder_bit + sliced_off_bit
+  else
+    sliced_off_bit + remainder_bit
+  end
+end
+
+def main
+  puts rearrange_string
+end
+
+main

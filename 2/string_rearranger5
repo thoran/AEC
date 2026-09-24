@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+# string_rearranger
+
+# 20260924
+# 0.4.0
+
+def input_string
+  ARGV[0]
+end
+
+def split_value
+  ARGV[1]
+end
+
+def nominated_segment_length
+  split_value.to_i.abs
+end
+
+def residual_segment_length
+  input_string.length - nominated_segment_length
+end
+
+def first_slice_length
+  split_value.to_i >= 0 ? nominated_segment_length : residual_segment_length
+end
+
+def second_slice_length
+  input_string.length - first_slice_length
+end
+
+def first_slice
+  input_string.slice(0, first_slice_length)
+end
+
+def second_slice
+  input_string.slice(first_slice_length, second_slice_length)
+end
+
+def rearranged_string
+  second_slice + first_slice
+end
+
+def main
+  puts rearranged_string
+end
+
+main

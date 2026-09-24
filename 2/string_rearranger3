@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+# string_rearranger
+
+# 20260924
+# 0.2.0
+
+def input_string
+  ARGV[0]
+end
+
+def split_value
+  ARGV[1]
+end
+
+def slice_length
+  if split_value.to_i >= 0
+    split_value.to_i
+  else
+    input_string.size + split_value.to_i
+  end
+end
+
+def frontside
+  output_string = ''
+  (slice_length.to_i..input_string.size - 1).each_with_index do |v, i|
+    output_string[i] = input_string[v]
+  end
+  output_string
+end
+
+def backside
+  output_string = ''
+  input_string_reversed = input_string.split.to_a.reverse.join
+  (0..slice_length - 1).each_with_index do |v, i|
+    output_string[i] = input_string_reversed[v]
+  end
+  output_string.split.reverse.join
+end
+
+def main
+  puts frontside + backside
+end
+
+main
