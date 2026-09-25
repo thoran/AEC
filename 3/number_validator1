@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+# number_validator
+
+# 20260925
+# 0.0.0
+
+def input
+  ARGV[0]
+end
+
+def validate_input
+  unless input.length == 6
+    raise
+  end
+  unless input.match(/\d/)
+    raise
+  end
+end
+
+def number_parts
+  input.split('')
+end
+
+def checksum
+  number_parts.take(5).map(&:to_i).sum % 10
+end
+
+def valid?
+  number_parts.last == checksum
+end
+
+def main
+  validate_input
+  puts (valid? ? 'valid' : 'invalid')
+end
+
+main

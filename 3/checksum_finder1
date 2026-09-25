@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# checksum_finder
+
+# 20260925
+# 0.0.0
+
+def input
+  ARGV[0]
+end
+
+def validate_input
+  unless input.length == 6
+    raise
+  end
+  unless input.match(/\d/)
+    raise
+  end
+end
+
+def checksum
+  input.split('').take(5).map(&:to_i).sum % 10
+end
+
+def main
+  validate_input
+  puts checksum
+end
+
+main
